@@ -30,7 +30,7 @@ ExternalProject_Add(dxil_spirv_external
         -B ${CMAKE_BINARY_DIR}/vendor/dxil-spirv 
         -S ${CMAKE_SOURCE_DIR}/vendor/dxil-spirv 
         -DCMAKE_BUILD_TYPE=Release
-    BUILD_COMMAND ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR}/vendor/dxil-spirv --config Release
+    BUILD_COMMAND ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR}/vendor/dxil-spirv --target dxil-spirv dxil-spirv-c-shared --config Release
     INSTALL_COMMAND ""
 )
 
@@ -42,7 +42,7 @@ ExternalProject_Add(spirv_cross_external
         -B ${CMAKE_BINARY_DIR}/vendor/SPIRV-Cross 
         -S ${CMAKE_SOURCE_DIR}/vendor/SPIRV-Cross 
         -DCMAKE_BUILD_TYPE=Release
-    BUILD_COMMAND ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR}/vendor/SPIRV-Cross --config Release
+    BUILD_COMMAND ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR}/vendor/SPIRV-Cross --target spirv-cross --config Release
     INSTALL_COMMAND ""
 )
 
@@ -55,6 +55,9 @@ ExternalProject_Add(dxcompiler_external
         -S ${CMAKE_SOURCE_DIR}/vendor/DirectXShaderCompiler 
         -DCMAKE_BUILD_TYPE=Release
         -DLLVM_TARGETS_TO_BUILD=None
+        -DLLVM_INCLUDE_TESTS=OFF
+        -DHLSL_INCLUDE_TESTS=OFF
+        -DSPIRV_BUILD_TESTS=OFF
         -C ${CMAKE_SOURCE_DIR}/vendor/DirectXShaderCompiler/cmake/caches/PredefinedParams.cmake
     BUILD_COMMAND ${CMAKE_COMMAND} --build ${CMAKE_BINARY_DIR}/vendor/DirectXShaderCompiler --target dxbc2dxil dxcompiler dxilconv --config Release
     INSTALL_COMMAND ""
