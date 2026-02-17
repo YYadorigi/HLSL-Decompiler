@@ -40,8 +40,6 @@ int main(int argc, char* argv[])
 		return 1;
 	}
 
-	fs::current_path(exePath);
-
 	fs::path inputFile = fs::absolute(argv[1]);
 	fs::path outputFile;
 
@@ -52,6 +50,9 @@ int main(int argc, char* argv[])
 		outputFile = inputFile;
 		outputFile.replace_extension(".hlsl");
 	}
+
+	// chdir should be called after fs::absolute
+	fs::current_path(exePath);
 
 	try {
 		int result = 0;
