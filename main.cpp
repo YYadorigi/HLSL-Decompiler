@@ -91,7 +91,7 @@ int main(int argc, char* argv[])
 			// Step 3: SPIR-V -> HLSL
 			std::string cmd3 = "cmd /c \"\"spirv-cross.exe\" \"" + tempSpv.string() +
 				"\" --output \"" + outputFile.string() +
-				"\" --hlsl --shader-model 51\"";
+				"\" --hlsl --shader-model 50\"";
 			result = std::system(cmd3.c_str());
 			if (result != 0) {
 				std::cerr << "spirv-cross failed with exit code: " << result << std::endl;
